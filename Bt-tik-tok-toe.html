@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Tic Tac Toe</title>
+  <style>
+    #table{
+
+    }
+    .table{
+
+    }
+    table{
+
+    }
+    td {
+      width: 50px;
+      height: 50px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<table border="1" id="table" class="table">
+  <script>
+    for (let i = 0; i < 3; i++) {
+      document.write("<tr>")
+      for (let j = 0; j < 3; j++) {
+        document.write(`<td id="${3 * i + j + 1}" onclick="tickCell(${3 * i + j + 1})"></td>`) // truyền id của thẻ td làm đối số cho hàm tickCell()
+      }
+      document.write("</tr>")
+    }
+  </script>
+
+</table>
+<script>
+  let turn = 1;
+
+  function tickCell(index) {// định nghĩa hàm tickCell có 1 tham số là id
+    if (document.getElementById(index).innerText == '') {
+      if (turn % 2 == 1) {
+        document.getElementById(index).innerText = 'X';
+      } else {
+        document.getElementById(index).innerText = 'O';
+      }
+      turn++
+    }
+    checkWin();
+  }
+  function checkWin(){
+    let arr = [];
+    let listTD = document.querySelectorAll('td')
+    for (let i = 0; i < listTD.length; i++) {
+      arr.push(listTD[i].innerText)
+    }
+    let con1 = arr[0]&&arr[0]==arr[1]&&arr[0]==arr[2];
+    let con2 = arr[0]&&arr[0]==arr[3]&&arr[0]==arr[6];
+    let con3 = arr[0]&&arr[0]==arr[4]&&arr[0]==arr[8];
+    let con4 = arr[3]&&arr[3]==arr[4]&&arr[3]==arr[5];
+    let con5 = arr[6]&&arr[6]==arr[7]&&arr[6]==arr[8];
+    let con6 = arr[1]&&arr[4]==arr[1]&&arr[1]==arr[7];
+    let con7 = arr[2]&&arr[2]==arr[5]&&arr[2]==arr[8];
+    let con8 = arr[2]&&arr[2]==arr[4]&&arr[6]==arr[2];
+    if (con1||con2||con3){
+      alert(arr[0]+" win")
+    }else  if(con4||con6||con8){
+      alert(arr[4]+" win")
+    }else  if(con5||con7){
+      alert(arr[8]+" win")
+    }
+    if(turn>9){
+      alert("draw")
+    }
+    console.log(turn)
+  }
+  checkWin();
+  function sum(a,b) {
+    return a+b
+  }
+
+</script>
+</body>
+</html>

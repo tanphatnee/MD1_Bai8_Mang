@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TIm min max</title>
+</head>
+<body>
+<div style="text-align: center">
+  <h1>Tim min max</h1>
+  <label id="notice"></label><br>
+  <input width="150px" id="creatNumber" type="number" min="-1000" value="0" max="1000"><button onclick="insertNumber()"> Insert</button>
+  <br>
+  <button onclick="min()">Min</button><label id="min"></label><br>
+  <button onclick="max()">Maxs</button><label id="max"></label><br>
+  <script>
+    let arr=[];
+    function insertNumber() {
+      let numberInsert=document.getElementById("creatNumber").value;
+      if (arr.length<10){
+        arr.push(numberInsert);
+        console.log(arr)
+        document.getElementById('notice').innerHTML=arr + ",";
+      }else alert('Toi da 10 so');
+      // console.log(arr)
+    }
+    function min() {
+      arr.sort(function (a,b){
+        return a-b;
+      })
+      document.getElementById("min").innerHTML=arr[0]
+    }
+    function max() {
+      arr.sort(function (a,b){
+        return a-b;
+      })
+
+      document.getElementById("max").innerHTML=arr[arr.length-1]
+    }
+  </script>
+</div>
+
+</body>
+</html>
